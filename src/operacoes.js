@@ -45,7 +45,12 @@ function isImpar(n) { return n % 2 !== 0; }
 function calcularPorcentagem(percentual, valor) { return (valor * percentual) / 100; }
 function aumentarPorcentagem(valor, percentual) { return valor * (1 + percentual / 100); }
 function diminuirPorcentagem(valor, percentual) { return valor * (1 - percentual / 100); }
-function inverterSinal(n) { return -n; }
+function inverterSinal(n) {
+    if (n === 0) {
+        return 0;
+    }
+    return -n;
+}
 
 // === Bloco 3: Funções Trigonométricas e Logarítmicas (21-30) ===
 function seno(anguloRad) { return Math.sin(anguloRad); }
@@ -81,10 +86,13 @@ function fibonacci(n) { // Retorna o n-ésimo termo
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 function produtoArray(numeros) {
-  if (numeros.length === 0) return 1;
-  return numeros.reduce((acc, val) => acc * val, 1);
+    if (numeros.length === 0) {
+        throw new Error('Array vazio não possui produto definido.'); 
+    }
+    return numeros.reduce((acc, val) => acc * val, 1);
 }
 function clamp(valor, min, max) {
+  if (min > max) [min, max] = [max, min]; 
   if (valor < min) return min;
   if (valor > max) return max;
   return valor;
